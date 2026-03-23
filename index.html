@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ryan Palmer | Surf Resort Marketing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0a0f1e; color: #fff; }
+    .playfair { font-family: 'Playfair Display', serif; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #38bdf8; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .hero-bg {
+      background: linear-gradient(to bottom, rgba(10,15,30,0.3) 0%, rgba(10,15,30,0.55) 60%, rgba(10,15,30,1) 100%),
+      url('images/ryan-surfing-scenic.jpeg') center/cover no-repeat;
+      min-height: 100vh;
+    }
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(56,189,248,0.15); }
+    .glow { box-shadow: 0 0 40px rgba(56,189,248,0.2); }
+    .wave-divider { width: 60px; height: 3px; background: linear-gradient(to right, #38bdf8, #0ea5e9); border-radius: 2px; }
+    .form-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: border-color 0.3s, background 0.3s; color: #fff; width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; }
+    .form-input:focus { outline: none; border-color: #38bdf8; background: rgba(56,189,248,0.05); }
+    .form-input::placeholder { color: #64748b; }
+    .btn-primary { background: linear-gradient(135deg, #0ea5e9, #38bdf8); transition: opacity 0.3s, transform 0.2s; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .mobile-menu { transition: max-height 0.4s ease, opacity 0.4s ease; max-height: 0; opacity: 0; overflow: hidden; }
+    .mobile-menu.open { max-height: 400px; opacity: 1; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.8s ease forwards; }
+    .fade-up-2 { animation: fadeUp 0.8s 0.2s ease both; }
+    .fade-up-3 { animation: fadeUp 0.8s 0.4s ease both; }
+    .fade-up-4 { animation: fadeUp 0.8s 0.6s ease both; }
+    .section-bg-alt { background: rgba(255,255,255,0.02); }
+    .footer-link { color: #94a3b8; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-link:hover { color: #38bdf8; }
+    select.form-input option { background: #0a0f1e; color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4" style="background: rgba(10,15,30,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div>
+      <span class="font-black text-white text-lg tracking-tight">RYAN PALMER</span>
+      <span class="text-sky-400 text-xs ml-2 font-medium tracking-widest uppercase">Surf Resort Marketing</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Services</a>
+      <a href="#process" class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Process</a>
+      <a href="#about" class="nav-link text-sm text-slate-300 hover:text-white transition-colors">About</a>
+      <a href="#packages" class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Packages</a>
+      <a href="#contact" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">Get in Touch</a>
+    </div>
+    <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="md:hidden text-white">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="mobile-menu md:hidden max-w-6xl mx-auto">
+    <div class="pt-4 pb-2 flex flex-col gap-3">
+      <a href="#services" class="text-sm text-slate-300 py-1">Services</a>
+      <a href="#process" class="text-sm text-slate-300 py-1">Process</a>
+      <a href="#about" class="text-sm text-slate-300 py-1">About</a>
+      <a href="#packages" class="text-sm text-slate-300 py-1">Packages</a>
+      <a href="#contact" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center mt-2">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg flex items-center justify-center px-6">
+  <div class="max-w-4xl mx-auto text-center pt-32 pb-40">
+    <div class="fade-up inline-flex items-center gap-2 bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 rounded-full px-4 py-1.5 mb-8">
+      <span class="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></span>
+      <span class="text-sky-400 text-xs font-semibold tracking-widest uppercase">Worldwide · Based in Kennebunk, Maine</span>
+    </div>
+    <h1 class="playfair fade-up-2 text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+      Marketing That <br/><em class="text-sky-400">Fills Rooms</em> at <br/>the World's Best Surf Resorts
+    </h1>
+    <p class="fade-up-3 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10">
+      PR, content, email, and paid media — built exclusively for boutique surf resorts and camps. I help you reduce OTA dependency and drive direct bookings from guests who are already looking for exactly what you offer.
+    </p>
+    <div class="fade-up-4 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#contact" class="btn-primary text-white font-bold px-8 py-4 rounded-full text-sm">Book a Free Strategy Call</a>
+      <a href="#services" class="border border-slate-600 hover:border-sky-400 text-white font-semibold px-8 py-4 rounded-full text-sm transition-colors">See Services</a>
+    </div>
+    <div class="fade-up-4 mt-16 flex flex-wrap justify-center gap-8 text-center">
+      <div><div class="text-3xl font-black text-sky-400">100%</div><div class="text-xs text-slate-400 mt-1">Surf Resort Focused</div></div>
+      <div><div class="text-3xl font-black text-sky-400">20+</div><div class="text-xs text-slate-400 mt-1">Target Resorts Identified</div></div>
+      <div><div class="text-3xl font-black text-sky-400">6+</div><div class="text-xs text-slate-400 mt-1">Destinations Visited Personally</div></div>
+      <div><div class="text-3xl font-black text-sky-400">Worldwide</div><div class="text-xs text-slate-400 mt-1">Jurisdiction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS BAR -->
+<div style="background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex flex-wrap justify-center gap-x-10 gap-y-2">
+    <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Destinations I work with →</span>
+    <span class="text-xs text-slate-400">🇫🇯 Fiji</span>
+    <span class="text-xs text-slate-400">🇳🇮 Nicaragua</span>
+    <span class="text-xs text-slate-400">🇨🇷 Costa Rica</span>
+    <span class="text-xs text-slate-400">🇮🇩 Indonesia</span>
+    <span class="text-xs text-slate-400">🇲🇦 Morocco</span>
+    <span class="text-xs text-slate-400">🌍 + More Worldwide</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-4"><div class="wave-divider"></div></div>
+    <p class="text-sky-400 text-xs font-bold uppercase tracking-widest mb-3">What I Do</p>
+    <h2 class="playfair text-4xl md:text-5xl font-bold text-white mb-4">Services Built for <em>Surf Resorts</em></h2>
+    <p class="text-slate-400 max-w-xl mb-16 leading-relaxed">Every service is designed specifically for the surf resort industry — not adapted from a generic agency playbook.</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">📰</div>
+        <h3 class="text-lg font-bold text-white mb-2">PR & Media Relations</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Pitches to The Inertia, Surfline, Condé Nast Traveler, Outside Magazine, and Travel + Leisure. Credible press that drives direct bookings and reduces your OTA dependency.</p>
+        <div class="text-sky-400 text-xs font-bold">From $1,500/mo</div>
+      </div>
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">📱</div>
+        <h3 class="text-lg font-bold text-white mb-2">Social Media & Content</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Instagram and TikTok content calendars, reels, community management, and influencer/UGC campaigns — built around the surf calendar, not a generic posting schedule.</p>
+        <div class="text-sky-400 text-xs font-bold">From $800/mo</div>
+      </div>
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">🔍</div>
+        <h3 class="text-lg font-bold text-white mb-2">SEO & Blog Content</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Own "best surf resort [destination]" in Google. Keyword strategy, on-page optimization, Google Business Profile, and 2–4 SEO-driven posts per month.</p>
+        <div class="text-sky-400 text-xs font-bold">From $900/mo</div>
+      </div>
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">✉️</div>
+        <h3 class="text-lg font-bold text-white mb-2">Email & CRM</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Welcome sequences, shoulder-season campaigns, loyalty flows, and re-engagement series. Turn past guests into repeat bookings without discounting.</p>
+        <div class="text-sky-400 text-xs font-bold">From $600/mo</div>
+      </div>
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">🎯</div>
+        <h3 class="text-lg font-bold text-white mb-2">Paid Acquisition</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Meta and Google campaigns targeting high-intent travelers searching for surf experiences. Fill specific weeks, target specific surf skill levels, retarget past visitors.</p>
+        <div class="text-sky-400 text-xs font-bold">From $1,000/mo + ad spend</div>
+      </div>
+      <div class="card-hover rounded-2xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-3xl mb-4">⚡</div>
+        <h3 class="text-lg font-bold text-white mb-2">Website CRO & Audits</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Full digital audits, direct-booking flow optimization, speed improvements, and conversion tracking setup. More revenue from the traffic you already have.</p>
+        <div class="text-sky-400 text-xs font-bold">From $300 one-time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="py-24 px-6 section-bg-alt">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-4"><div class="wave-divider"></div></div>
+    <p class="text-sky-400 text-xs font-bold uppercase tracking-widest mb-3">How It Works</p>
+    <h2 class="playfair text-4xl md:text-5xl font-bold text-white mb-16">From First Call to <em>First Booking</em></h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-sky-500 bg-opacity-20 border border-sky-500 border-opacity-40 flex items-center justify-center mx-auto mb-4">
+          <span class="text-sky-400 font-black text-lg">1</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">Free Audit</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">I review your current digital presence — website, social, search rankings, email — and identify your fastest wins.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-sky-500 bg-opacity-20 border border-sky-500 border-opacity-40 flex items-center justify-center mx-auto mb-4">
+          <span class="text-sky-400 font-black text-lg">2</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">Strategy Session</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">We align on your peak seasons, target guest profile, OTA dependency, and which channels will move the needle fastest.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-sky-500 bg-opacity-20 border border-sky-500 border-opacity-40 flex items-center justify-center mx-auto mb-4">
+          <span class="text-sky-400 font-black text-lg">3</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">90-Day Plan</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">You receive a clear, prioritized 90-day roadmap — no fluff. Month 1 fixes, Month 2 PR wave, Month 3 seasonal campaign.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-sky-500 bg-opacity-20 border border-sky-500 border-opacity-40 flex items-center justify-center mx-auto mb-4">
+          <span class="text-sky-400 font-black text-lg">4</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">Ongoing Results</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Monthly reporting tied to real KPIs — direct bookings, organic sessions, earned media placements, occupancy lift.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="mb-4"><div class="wave-divider"></div></div>
+        <p class="text-sky-400 text-xs font-bold uppercase tracking-widest mb-3">About Ryan</p>
+        <h2 class="playfair text-4xl md:text-5xl font-bold text-white mb-6">I've Stayed at the Resorts <em>I Market For</em></h2>
+        <p class="text-slate-300 leading-relaxed mb-5">Based in Kennebunk, Maine, I work with boutique surf resorts worldwide — from Fiji to Nicaragua, Indonesia to Morocco. My edge is simple: I've been a guest at the resorts I represent. I understand what makes someone book a surf trip, what keeps them coming back, and what they tell their friends afterward.</p>
+        <p class="text-slate-300 leading-relaxed mb-5">Most marketing agencies treat surf resorts like any other hospitality client. I don't. Every pitch angle, every email sequence, every SEO keyword I target is built around the specific psychology of the surf traveler — someone who plans trips around swell forecasts, values authenticity over polish, and books based on trust.</p>
+        <p class="text-slate-300 leading-relaxed mb-8">My focus is exclusively on surf resorts and camps. That means when I pitch a journalist at The Inertia, I know their audience. When I write your SEO content, I know exactly what your guests are searching for.</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 text-sky-400 text-xs px-3 py-1.5 rounded-full">🇫🇯 Fiji</span>
+          <span class="bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 text-sky-400 text-xs px-3 py-1.5 rounded-full">🇳🇮 Nicaragua</span>
+          <span class="bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 text-sky-400 text-xs px-3 py-1.5 rounded-full">🌊 Surf Traveler</span>
+          <span class="bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 text-sky-400 text-xs px-3 py-1.5 rounded-full">📍 Kennebunk, Maine</span>
+          <span class="bg-sky-500 bg-opacity-10 border border-sky-500 border-opacity-30 text-sky-400 text-xs px-3 py-1.5 rounded-full">🌍 Worldwide Clients</span>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden glow" style="border: 1px solid rgba(56,189,248,0.2);">
+        <img src="images/ryan-surfing-action.jpeg" alt="Ryan Palmer surfing" class="w-full h-80 object-cover"/>
+        <div class="p-6" style="background: rgba(255,255,255,0.04);">
+          <p class="text-slate-300 text-sm italic leading-relaxed">"I've paddled out at Waidroka Bay. I've watched the sun set from Miramar. I know what it feels like to finally find the resort that changes how you think about surf travel — and I know how to communicate that feeling to the guests looking for it."</p>
+          <p class="text-sky-400 text-xs font-bold mt-3">— Ryan Palmer, Kennebunk, Maine</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages" class="py-24 px-6 section-bg-alt">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-4"><div class="wave-divider"></div></div>
+    <p class="text-sky-400 text-xs font-bold uppercase tracking-widest mb-3">Pricing</p>
+    <h2 class="playfair text-4xl md:text-5xl font-bold text-white mb-4">Simple, Transparent <em>Packages</em></h2>
+    <p class="text-slate-400 max-w-xl mb-16">No lock-in contracts for new clients. Start with one month, see results, then decide. All packages include a monthly performance report.</p>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card-hover rounded-2xl p-8" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-sky-400 text-xs font-black uppercase tracking-widest mb-2">Swell Starter</div>
+        <div class="text-4xl font-black text-white mb-1">$1,500<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-6">Best for camps and smaller resorts just starting to invest in marketing.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Social media management (12 posts + 4 reels)</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Email CRM setup + monthly newsletter</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Google Business Profile optimization</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Monthly performance report</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Monthly strategy call</li>
+        </ul>
+        <a href="#contact" class="block text-center border border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-slate-900 font-bold py-3 rounded-full text-sm transition-all">Get Started</a>
+      </div>
+      <div class="card-hover rounded-2xl p-8 relative glow" style="background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(56,189,248,0.08)); border: 1px solid rgba(56,189,248,0.4);">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-xs font-black px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
+        <div class="text-sky-400 text-xs font-black uppercase tracking-widest mb-2">Set Wave</div>
+        <div class="text-4xl font-black text-white mb-1">$3,500<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-6">Best for established resorts ready to reduce OTA dependency.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Everything in Swell Starter</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>PR — 8 media pitches per month</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>2 SEO blog posts per month</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Welcome email sequence (5–7 emails)</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Bi-weekly strategy calls</li>
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Quarterly media coverage report</li>
+        </ul>
+        <a href="#contact" class="btn-primary block text-center text-white font-bold py-3 rounded-full text-sm">Get Started</a>
+      </div>
+      <div class="card-hover rounded-2xl p-8" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="text-sky-400 text-xs font-black uppercase tracking-widest mb-2">Overhead Set</div>
+        <div class="text-4xl font-black text-white mb-1">$6,500<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-6">Best for premium resorts seeking maximum growth and visibility.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex gap-2 text-sm text-slate-300"><span class="text-sky-400 mt-0.5">✓</span>Everything in Set Wave</li>
+          <li
